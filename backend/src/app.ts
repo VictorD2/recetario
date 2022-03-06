@@ -9,14 +9,14 @@ import './lib/passport';
 
 //Routes
 import IndexRoutes from "./routes/index.routes";
+import UsuariosRoutes from "./modules/users/routes/index.routes";
 
 declare global {
   namespace Express {
     interface User {
       rango: string;
-      correo: string;
+      username: string;
       id: string;
-      foto: string;
     }
   }
 }
@@ -52,6 +52,7 @@ export class App {
   }
   routes() {
     this.app.use(IndexRoutes);
+    this.app.use('/api/v0/auth', UsuariosRoutes);
   }
 
   async listen() {
